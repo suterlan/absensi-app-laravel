@@ -8,6 +8,7 @@ use App\Models\Permission;
 use App\Models\Presence;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use Stevebauman\Location\Facades\Location;
 
 class HomeController extends Controller
 {
@@ -20,9 +21,17 @@ class HomeController extends Controller
             ->sortByDesc('data.is_end')
             ->sortByDesc('data.is_start');
 
+        if ($position = Location::get()) {
+            // Successfully retrieved position.
+            $currentPosition = $position->cityName;
+        } else {
+            // Failed retrieving position.
+        }
+
         return view('home.index', [
             "title" => "Beranda",
-            "attendances" => $attendances
+            "attendances" => $attendances,
+            // "currentPosition"   => $currentPosition,
         ]);
     }
 

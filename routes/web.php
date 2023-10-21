@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/positions', PositionController::class)->only(['index', 'create']);
         Route::get('/positions/edit', [PositionController::class, 'edit'])->name('positions.edit');
         // employees
-        Route::resource('/employees', EmployeeController::class)->only(['index', 'create']);
-        Route::get('/employees/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
+        Route::resource('/users', EmployeeController::class)->only(['index', 'create']);
+        Route::get('/users/edit', [EmployeeController::class, 'edit'])->name('users.edit');
         // holidays (hari libur)
         Route::resource('/holidays', HolidayController::class)->only(['index', 'create']);
         Route::get('/holidays/edit', [HolidayController::class, 'edit'])->name('holidays.edit');
@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/presences/{attendance}/permissions', [PresenceController::class, 'permissions'])->name('presences.permissions');
     });
 
-    Route::middleware('role:user')->name('home.')->group(function () {
+    Route::middleware('role:guru,siswa')->name('home.')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('index');
         // desctination after scan qrcode
         Route::post('/absensi/qrcode', [HomeController::class, 'sendEnterPresenceUsingQRCode'])->name('sendEnterPresenceUsingQRCode');

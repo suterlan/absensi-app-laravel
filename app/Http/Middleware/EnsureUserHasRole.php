@@ -24,9 +24,14 @@ class EnsureUserHasRole
                 return $next($request);
             }
         }
+        // if (in_array(auth()->user()->role, $roles)) {
+        //     return $next($request);
+        // }else{
+        //     return abort(403);
+        // }
 
         // return abort(403);
-        $route  = $userRole->name === 'user' ? 'home.index' : 'dashboard.index';
+        $route  = $userRole->name === 'guru' || 'siswa' ? 'home.index' : 'dashboard.index';
         return redirect()->route($route)->with('failed', 'Kamu tidak memilik izin untuk mengakses halaman tersebut.');
     }
 }

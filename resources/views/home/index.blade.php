@@ -27,7 +27,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    Informasi Karyawan
+                    Informasi User
                 </div>
                 <div class="card-body">
                     <ul class="ps-3">
@@ -47,6 +47,10 @@
                             <span class="fw-bold d-block">Bergabung Pada : </span>
                             <span>{{ auth()->user()->created_at->diffForHumans() }} ({{
                                 auth()->user()->created_at->format('d M Y') }})</span>
+                        </li>
+                        <li class="mb-1">
+                            <span class="fw-bold d-block">Lokasi : </span>
+                            {{-- <span>{{ $currentPosition }}</span> --}}
                         </li>
                     </ul>
                 </div>

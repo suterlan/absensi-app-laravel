@@ -17,13 +17,13 @@ class AuthController extends Controller
     public function authenticate(LoginRequest $request)
     {
         $remember = $request->boolean('remember');
-        $credentials = $request->only(['email', 'password']);
+        $credentials = $request->only(['username', 'password']);
 
         if (Auth::attempt($credentials, $remember)) { // login gagal
             request()->session()->regenerate();
             $data = [
                 "success" => true,
-                "redirect_to" => auth()->user()->isUser() ? route('home.index') : route('dashboard.index'),
+                "redirect_to" => auth()->user()->isSiswa() || auth()->user()->isGuru() ? route('home.index') : route('dashboard.index'),
                 "message" => "Login berhasil, silahkan tunggu!"
             ];
             return response()->json($data);

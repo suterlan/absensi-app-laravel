@@ -90,7 +90,7 @@ class PresenceController extends Controller
 
 
         return view('presences.not-present', [
-            "title" => "Data Karyawan Tidak Hadir",
+            "title" => "Data Tidak Hadir",
             "attendance" => $attendance,
             "notPresentData" => $notPresentData
         ]);
@@ -109,7 +109,7 @@ class PresenceController extends Controller
             ->get();
 
         return view('presences.permissions', [
-            "title" => "Data Karyawan Izin",
+            "title" => "Data Izin",
             "attendance" => $attendance,
             "permissions" => $permissions,
             "date" => $byDate
@@ -186,7 +186,7 @@ class PresenceController extends Controller
         ]);
 
         return back()
-            ->with('success', "Berhasil menerima data izin karyawan atas nama \"$user->name\".");
+            ->with('success', "Berhasil menerima data izin atas nama \"$user->name\".");
     }
 
     private function getNotPresentEmployees($presences)

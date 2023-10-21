@@ -34,10 +34,10 @@ final class EmployeeTable extends PowerGridComponent
     public function header(): array
     {
         return [
-            Button::add('bulk-checked')
-                ->caption(__('Hapus'))
-                ->class('btn btn-danger border-0')
-                ->emit('bulkCheckedDelete', []),
+            // Button::add('bulk-checked')
+            //     ->caption(__('Hapus'))
+            //     ->class('btn btn-danger border-0')
+            //     ->emit('bulkCheckedDelete', []),
             Button::add('bulk-edit-checked')
                 ->caption(__('Edit'))
                 ->class('btn btn-success border-0')
@@ -76,7 +76,7 @@ final class EmployeeTable extends PowerGridComponent
 
             $ids = join('-', $ids);
             // return redirect(route('employees.edit', ['ids' => $ids])); // tidak berfungsi/menredirect
-            return $this->dispatchBrowserEvent('redirect', ['url' => route('employees.edit', ['ids' => $ids])]);
+            return $this->dispatchBrowserEvent('redirect', ['url' => route('users.edit', ['ids' => $ids])]);
         }
     }
 
@@ -155,7 +155,6 @@ final class EmployeeTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('name')
             ->addColumn('email')
-            ->addColumn('phone')
             ->addColumn('role', function (User $model) {
                 return ucfirst($model->role);
             })
@@ -194,11 +193,6 @@ final class EmployeeTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Email', 'email', 'users.email')
-                ->searchable()
-                ->makeInputText()
-                ->sortable(),
-
-            Column::make('No. Telp', 'phone', 'users.phone')
                 ->searchable()
                 ->makeInputText()
                 ->sortable(),

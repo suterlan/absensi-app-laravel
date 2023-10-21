@@ -9,18 +9,18 @@
                     Dashboard
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('positions.*') ? 'active' : '' }}"
                     href="{{ route('positions.index') }}">
                     <span data-feather="tag" class="align-text-bottom"></span>
                     Jabatan / Posisi
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('employees.*') ? 'active' : '' }}"
-                    href="{{ route('employees.index') }}">
+                <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}"
+                    href="{{ route('users.index') }}">
                     <span data-feather="users" class="align-text-bottom"></span>
-                    Karyawaan
+                    Users
                 </a>
             </li>
             <li class="nav-item">

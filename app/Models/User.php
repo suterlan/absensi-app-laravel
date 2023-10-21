@@ -14,20 +14,22 @@ class User extends Authenticatable
 
     const ADMIN_ROLE_ID = 1;
     const OPERATOR_ROLE_ID = 2;
-    const USER_ROLE_ID = 3;
+    const GURU_ROLE_ID = 3;
+    const SISWA_ROLE_ID = 4;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+    // protected $connection = 'mysql2';
+
     protected $fillable = [
         'name',
         'email',
         'password',
         'role_id',
         'position_id',
-        'phone',
     ];
 
     /**
@@ -61,7 +63,8 @@ class User extends Authenticatable
 
     public function scopeOnlyEmployees($query)
     {
-        return $query->where('role_id', self::USER_ROLE_ID);
+        return $query->where('role_id', self::SISWA_ROLE_ID)
+                    ->orWhere('role_id', self::GURU_ROLE_ID);
     }
 
     public function isAdmin()
@@ -74,8 +77,13 @@ class User extends Authenticatable
         return $this->role_id === self::OPERATOR_ROLE_ID;
     }
 
-    public function isUser()
+    public function isGuru()
     {
-        return $this->role_id === self::USER_ROLE_ID;
+        return $this->role_id === self::GURU_ROLE_ID;
+    }
+
+    public function isSiswa()
+    {
+        return $this->role_id === self::SISWA_ROLE_ID;
     }
 }
